@@ -1,0 +1,34 @@
+Reference	Qty	Value	DNP	Exclude from BOM	Exclude from Board	Footprint	Datasheet	digikey
+C101,C110	2	1uF				Capacitor_SMD:C_0805_2012Metric	~	311-1365-1-ND
+C102,C103,C105,C106,C108	5	0.1uF/50V				Capacitor_SMD:C_0603_1608Metric	~	311-1343-1-ND
+C104,C111	2	10uF/50V				Capacitor_SMD:C_0805_2012Metric	~	490-18663-1-ND
+C107	1	0.01uF/50V				Capacitor_SMD:C_0603_1608Metric	~	311-1349-1-ND
+C109	1	2.2uF/50V				Capacitor_SMD:C_0603_1608Metric	~	587-4320-1-ND
+C112	1	47uF				Capacitor_SMD:C_0805_2012Metric	~	587-4280-1-ND
+D101	1	LED BLUE				LED_SMD:LED_0603_1608Metric	~	3147-B1931NB--20C007614U1930CT-ND
+D102	1	SK36A-LTP				Diode_SMD:D_SMA		SK36A-LTPMSCT-ND
+FB101	1	MH2029-601Y				Inductor_SMD:L_0805_2012Metric	~	MH2029-601YCT-ND
+J101	1	USB4105-GF-A				Library:USB_C_5077CR-16-SMC2-BK-TR	https://www.usb.org/sites/default/files/documents/usb_type-c.zip	2073-USB4105-GF-ACT-ND
+J102	1	UPPER OUT				Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical	~	2057-PH2-04-UA-ND
+J103	1	LOWER OUT				Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical	~	2057-PH2-04-UA-ND
+JP101	1	SolderJumper_2_Open				Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm	~	-
+L101	1	22uH				Library:L_CHPH4D19FNP	~	308-1313-1-ND
+Q101,Q102	2	DMN3008SFG				Package_SON:Diodes_PowerDI3333-8	https://www.diodes.com/assets/Datasheets/DMN3008SFG.pdf	DMN3008SFG-7DICT-ND
+R101,R105,R107,R111,R117,R118,R119,R120	8	10K				Resistor_SMD:R_0603_1608Metric	~	311-10.0KHRCT-ND
+R102	1	200K				Resistor_SMD:R_0603_1608Metric	~	311-200KHRCT-ND
+R103,R104,R116	3	5K1				Resistor_SMD:R_0603_1608Metric	~	311-5.10KHRCT-ND
+R106	1	1K				Resistor_SMD:R_0603_1608Metric	~	RMCF0603FT1K00CT-ND
+R108,R109	2	4.7K				Resistor_SMD:R_0603_1608Metric	~	311-4.70KHRCT-ND
+R110	1	5m				Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder	~	4506-PEWF2512D5L00Q9CT-ND 
+R112	1	100R				Resistor_SMD:R_0603_1608Metric	~	311-10.0HRCT-ND
+R114	1	100				Resistor_SMD:R_0603_1608Metric	~	311-100GRCT-ND
+R115	1	3K09				Resistor_SMD:R_0603_1608Metric	~	311-3.09KHRCT-ND
+SW101,SW102,SW103	3	TS-06104				Library:TS-06104		C2939203 JLPCB Part#
+TP101	1	5V				TestPoint:TestPoint_Pad_D1.0mm	~	-
+TP102	1	VDD				TestPoint:TestPoint_Pad_D1.0mm	~	-
+TP103	1	3V3				TestPoint:TestPoint_Pad_D1.0mm	~	-
+U101	1	PCA9306D				Package_SO:SSOP-8_2.95x2.8mm_P0.65mm	https://www.nxp.com/docs/en/data-sheet/PCA9306.pdf	568-4215-1-ND
+U102	1	SSD1306_DISPLAY				Library:OLED I2C DISPLAY		https://akizukidenshi.com/catalog/g/g112031/
+U103	1	ESP32-C3-WROOM-02-N4				Library:IC18_ESP32-C3-WROOM-02-N4_EXP	ESP32-C3-WROOM-02-N4	1965-ESP32-C3-WROOM-02-N4CT-ND
+U104	1	AP33772SDKZ-13-FA01				Library:W-QFN4040-24_Type_A1_DIO	AP33772SDKZ-13	31-AP33772SDKZ-13-FA01CT-ND
+U105	1	NJW1933F1				Package_TO_SOT_SMD:SOT-23-6		

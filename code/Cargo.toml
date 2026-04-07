@@ -1,0 +1,40 @@
+[package]
+name = "mini-power"
+version = "0.1.1"
+authors = ["Hiroshi Nakajima <hnakamiru1103@gmail.com>"]
+edition = "2021"
+
+[profile.release]
+opt-level = "s"
+[features]
+default = ["native"]
+native = ["esp-idf-sys/native"]
+
+[dependencies]
+anyhow = "1"
+esp-idf-sys = { version = "0.36", features = ["binstart"] }
+esp-idf-svc = { version = "0.51" }
+log = "0.4"
+esp-idf-hal = "0.45.2"
+embedded-hal = "1.0.0"
+embedded-hal-0-2 = { package = "embedded-hal", version = "0.2.7" }
+embedded-svc = "0.28"
+embedded-graphics = "0.7"
+bmp = "0.5.0"
+tinybmp = "0.4.0"
+toml-cfg = "0.1.3"
+ssd1306 = "0.7"
+heapless = "0.8.0"
+hmac = "0.12.1"
+sha2 = "0.10.8"
+url = "2.5.3"
+chrono = "0.4.38"
+ap33772s-driver = { version = "0.1", features = ["std"] }
+# Removed syslog dependency as we're using a custom implementation
+
+[build-dependencies]
+embuild = "0.28"
+anyhow = "1"
+
+[package.metadata.espflash]
+partition_table = "partitions.csv"

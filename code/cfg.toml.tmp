@@ -1,0 +1,13 @@
+[mini-power]
+wifi_ssid = "<Your AP SSID>"  # Set your AP SSID
+wifi_psk = "<Your AP Password>" # Set your AP Password
+influxdb_server = "<InfluxDB Server IP Address:Port>"
+max_current_limit = "5.2"
+max_power_limit = "100.0"
+max_temperature = "80" # NOT USED
+influxdb_api_key = "<InfluxDB API KEY>" # Set your InfluxDB API Key
+influxdb_api = "/api/v2/write?org=<ORG>&bucket=LOGGER&precision=ns" # Set your InfluxDB API with your ORG and BUCKET
+influxdb_tag = "ch"  # Tag for InfluxDB measurements
+influxdb_measurement = "minipower" # Measurement name for InfluxDB
+syslog_server = "<Syslog Server IP Address:Port>" # Set your Syslog Server IP Address and Port ex. 192.168.2.140:514
+syslog_enable = "false" # Set to "true" to enable syslog
