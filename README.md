@@ -210,7 +210,17 @@ Copy the Operator API Token shown after setup — you will not see it again. To 
 
 **4. Import the Dashboard Template**
 
-Click `Dashboard` → `CREATE DASHBOARD` → `Import Dashboard`. Drop the `influxdb/dc_power_station.json` file into the import dialog, then click `IMPORT JSON AS DASHBOARD`.
+Click `Dashboard` → `CREATE DASHBOARD` → `Import Dashboard`. Drop the `influxdb/mimi-power.json` file into the import dialog, then click `IMPORT JSON AS DASHBOARD`.
+
+You will see the **Mimi-POWER** dashboard. It contains three time-series graphs:
+
+| Chart | Field | Unit |
+|---|---|---|
+| Voltage | `voltage` | V |
+| Current | `current` | A |
+| Power | `power` | W |
+
+All charts query the `LOGGER` bucket, measurement `minipower`, tag `tag = "ch"`.
 
 ![dashboard](doc/dashboard.png)
 
