@@ -65,11 +65,16 @@ The firmware is written entirely in Rust using the ESP-IDF framework.
 
 ### Basic Operation
 
-1. **Connection**: Connect a USB-C PD charger to the input port.
+1. **Connection**: Connect a USB-C PD charger*1 to the input port.
 2. **Power On**: The unit negotiates PD profiles and scrolls through the available PDO list on the display.
-3. **Voltage Selection**: Press **Up** or **Down** to increase/decrease the target voltage in 0.1V steps.
-4. **Output Control**: Press **Center** to toggle output ON/OFF.
-5. **Monitoring**: View real-time measurements on the OLED display or open `http://<device-ip>/` in a browser.
+3. **Main Screen**: After getting a IP address from DHCP server*2, the display shows output voltage, current, power, WiFi RSSI, IP address(last two octets)and buffer usage. 
+4. **Voltage Selection**: Press **Up(yellow)** or **Down(blue)** to increase/decrease the target voltage in 0.1V steps.
+5. **Output Control**: Press **Center(red)** to toggle output ON/OFF.
+6. **Monitoring**: View real-time measurements on the OLED display or open `http://<device-ip>/` in a browser.
+
+**Note** 
+*1: When it doesn't connect to the PD charger, the display will show "No PD Power". Click the up/down buttons to show main screen. It only can output 5V.
+*2: If it can't connect to WiFi, the display will show the main screen after 30 seconds, but without IP address and RSSI. 
 
 ### Button Controls
 
@@ -78,6 +83,32 @@ The firmware is written entirely in Rust using the ESP-IDF framework.
 | Up | GPIO10 | Increase output voltage by 0.1V |
 | Down | GPIO20 | Decrease output voltage by 0.1V |
 | Center | GPIO21 | Toggle output ON/OFF |
+
+### OLED Display
+
+The SSD1306 128×64 monochrome OLED display is divided into several regions as shown below.
+
+![display layout](doc/display.jpg)
+
+| Area | Content | Detail |
+|---|---|---|
+| `V:xx.xV` | Measured voltage | Read from AP33772S (updated every 100ms when output ON) |
+| `I:xx.xA` | Measured current | Read from AP33772S (updated every 100ms when output ON) |
+| `SET:xx.xV` | Target output voltage | Blinks while PD voltage negotiation is in progress |
+| `P:xx.xW` / `P:xx.xmW` | Measured power | Auto-range: switches between mW and W (threshold 0.5W / 1.0W) |
+| `OUTPUT` / `STOPPED` | Output state | `OUTPUT` shown inverted (white on black) when output is ON |
+| IP address | Last two octets of device IP | e.g. `IP:2.142` for `192.168.2.142` |
+| Buffer bar | InfluxDB send buffer usage | 60px wide bar; fills left-to-right as records accumulate (max 127) |
+| `xxx%` | Buffer usage percentage | Displayed to the right of the buffer bar |
+| WiFi icon | WiFi signal strength | 5-level icon (wifi-0 to wifi-4) based on RSSI; animated while connecting |
+| `+xx dBm` | RSSI value | Shown below WiFi icon when connected |
+| Voltage bar (right edge) | PDO voltage range | Vertical bar showing min–max PD voltage; Variable/PPS range filled, Fixed PDO voltages marked as horizontal lines; current SET voltage shown as a longer line marker |
+
+**Startup sequence:**
+
+1. At boot, the PDO list screen is shown first — all Power Data Objects negotiated with the charger are listed (voltage, current, max power, type). Each page is shown for 3 seconds.
+2. After PDO display completes, the main screen appears.
+3. Error / warning messages (e.g. `Voltage Overshoot`, `Current OV x.xxxA`) replace the main screen temporarily and auto-dismiss after 3 seconds.
 
 ### HTTP Web Interface
 
@@ -110,9 +141,13 @@ When connected to WiFi, open `http://<device-ip>/` (IP shown on OLED display) to
 
 ```bash
 sudo apt update && sudo apt -y install git python3 python3-pip gcc build-essential \
-  curl pkg-config libudev-dev libtinfo5 clang libclang-dev llvm-dev udev libssl-dev python3.10-venv
+  curl pkg-config libudev-dev libtinfo5 clang libclang-dev llvm-dev udev libssl-dev python3.10-venv nano
+```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Select option 1 (default install)
+```
+```bash
 source "$HOME/.cargo/env"
 ```
 
@@ -121,11 +156,11 @@ source "$HOME/.cargo/env"
 ```bash
 cargo install ldproxy
 cargo install cargo-binstall
-cargo binstall espup
+cargo install espup
 espup install
 espup update
 . ./export-esp.sh
-cargo install cargo-espflash
+cargo binstall cargo-espflash
 ```
 
 **3. Add UDEV rules**
